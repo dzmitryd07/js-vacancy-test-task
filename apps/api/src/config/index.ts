@@ -26,7 +26,6 @@ const schema = z.object({
   CLOUD_STORAGE_SECRET_ACCESS_KEY: z.string().optional(),
   GOOGLE_CLIENT_ID: z.string().optional(),
   GOOGLE_CLIENT_SECRET: z.string().optional(),
-  NEXT_STRIPE_SECRET_KEY: z.string().optional(),
   FIREBASE_API_KEY: z.string().optional(),
   FIREABSE_AUTH_DOMAIN: z.string().optional(),
   FIREBASE_PROJECT_ID: z.string().optional(),
