@@ -1,0 +1,25 @@
+.black-color {
+  color: #201f22;
+}
+
+.light-gray-color {
+  color: #a3a3a3;
+}
+
+.fw-700 {
+  font-weight: 700;
+}
+
+.fw-500 {
+  font-weight: 500;
+}
+
+.button {
+  background-color: #2b77eb;
+
+  &:disabled,
+  &[data-disabled] {
+    background-color: #72a5f4;
+    color: white;
+  }
+}

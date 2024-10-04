@@ -24,5 +24,12 @@
     "node": ">= 20.11.1",
     "yarn": "please-use-pnpm",
     "pnpm": ">= 9.5.0"
+  },
+  "dependencies": {
+    "@stripe/react-stripe-js": "2.8.0",
+    "@stripe/stripe-js": "4.5.0",
+    "firebase": "10.13.2",
+    "stripe": "16.12.0",
+    "use-shopping-cart": "3.2.0"
   }
 }

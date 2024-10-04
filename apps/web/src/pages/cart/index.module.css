@@ -1,0 +1,28 @@
+.increment-btn-color {
+  color: #cfcfcf;
+}
+
+.default-tab {
+  font-weight: 600;
+  font-size: 20px;
+}
+
+.active-tab {
+  color: #201f22;
+}
+
+.not-active-tab {
+  color: #a3a3a3;
+}
+
+.remove-item-btn {
+  font-size: 14px;
+  width: 100px;
+  padding: 0;
+  border: 0;
+  background-color: transparent;
+
+  & span {
+    color: #767676;
+  }
+}

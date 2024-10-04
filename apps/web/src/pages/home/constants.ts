@@ -1,14 +1,10 @@
-import { ColumnDef } from '@tanstack/react-table';
-
-import { UsersListParams, UsersListSortParams } from 'resources/user';
-
-import { User } from 'types';
+import { ProductsListParams, ProductsListSortParams } from 'resources/product';
 
 export const DEFAULT_PAGE = 1;
-export const PER_PAGE = 10;
-export const EXTERNAL_SORT_FIELDS: Array<keyof UsersListSortParams> = ['createdOn'];
+export const PER_PAGE = 6;
+export const EXTERNAL_SORT_FIELDS: Array<keyof ProductsListSortParams> = ['createdOn'];
 
-export const DEFAULT_PARAMS: UsersListParams = {
+export const DEFAULT_PARAMS: ProductsListParams = {
   page: DEFAULT_PAGE,
   searchValue: '',
   perPage: PER_PAGE,
@@ -16,23 +12,3 @@ export const DEFAULT_PARAMS: UsersListParams = {
     createdOn: 'desc',
   },
 };
-
-export const COLUMNS: ColumnDef<User>[] = [
-  {
-    accessorKey: 'firstName',
-    header: 'First Name',
-    cell: (info) => info.getValue(),
-    enableSorting: true,
-  },
-  {
-    accessorKey: 'lastName',
-    header: 'Last Name',
-    cell: (info) => info.getValue(),
-    enableSorting: true,
-  },
-  {
-    accessorKey: 'email',
-    header: 'Email',
-    cell: (info) => info.getValue(),
-  },
-];

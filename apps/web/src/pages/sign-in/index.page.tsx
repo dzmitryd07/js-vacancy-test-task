@@ -8,12 +8,9 @@ import { useForm } from 'react-hook-form';
 
 import { accountApi } from 'resources/account';
 
-import { GoogleIcon } from 'public/icons';
-
 import { handleApiError } from 'utils';
 
 import { RoutePath } from 'routes';
-import config from 'config';
 
 import { signInSchema } from 'schemas';
 import { SignInParams } from 'types';
@@ -52,6 +49,7 @@ const SignIn: NextPage = () => {
                 label="Email Address"
                 placeholder="Enter email address"
                 error={errors.email?.message}
+                radius="md"
               />
 
               <PasswordInput
@@ -59,6 +57,7 @@ const SignIn: NextPage = () => {
                 label="Password"
                 placeholder="Enter password"
                 error={errors.password?.message}
+                radius="md"
               />
 
               {errors.credentials && (
@@ -72,25 +71,16 @@ const SignIn: NextPage = () => {
               </Anchor>
             </Stack>
 
-            <Button type="submit" loading={isSignInPending} fullWidth mt={32}>
+            <Button type="submit" loading={isSignInPending} fullWidth mt={32} color="#2B77EB" radius="md">
               Sign in
             </Button>
           </form>
         </Stack>
 
         <Stack gap={32}>
-          <Button
-            component="a"
-            variant="outline"
-            leftSection={<GoogleIcon />}
-            href={`${config.API_URL}/account/sign-in/google/auth`}
-          >
-            Continue with Google
-          </Button>
-
           <Group justify="center" gap={12}>
             Don’t have an account?
-            <Anchor component={Link} href={RoutePath.SignUp}>
+            <Anchor component={Link} href={RoutePath.SignUp} c="#2B77EB">
               Sign up
             </Anchor>
           </Group>

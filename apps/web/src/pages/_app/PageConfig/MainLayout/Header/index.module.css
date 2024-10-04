@@ -1,0 +1,12 @@
+.btn-active {
+  border: 0;
+  background-color: #ececee;
+  color: #201f22;
+  padding: '2px 20px';
+}
+
+.btn {
+  border: 0;
+  background-color: transparent;
+  color: #a3a3a3;
+}

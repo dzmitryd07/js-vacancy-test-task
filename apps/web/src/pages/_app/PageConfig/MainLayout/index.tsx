@@ -15,10 +15,10 @@ const MainLayout: FC<MainLayoutProps> = ({ children }) => {
   if (!account) return null;
 
   return (
-    <AppShell component={Stack} bg="gray.0">
+    <AppShell component={Stack} bg="#FCFCFC">
       <Header />
 
-      <AppShell.Main p={32} pt={account.isShadow ? 144 : 104}>
+      <AppShell.Main p={48} pt={account.isShadow ? 144 : 124}>
         {children}
       </AppShell.Main>
     </AppShell>

@@ -1,66 +1,117 @@
-import React from 'react';
+import React, { useCallback, useState } from 'react';
 import { NextPage } from 'next';
 import Head from 'next/head';
-import { Stack, Title } from '@mantine/core';
-import { useSetState } from '@mantine/hooks';
-import { showNotification } from '@mantine/notifications';
-import { SortDirection } from '@tanstack/react-table';
-import { pick } from 'lodash';
+import { Badge, Group, Pagination, Stack } from '@mantine/core';
+import { useInputState, useSetState } from '@mantine/hooks';
 
-import { userApi, UsersListParams } from 'resources/user';
+import { accountApi } from 'resources/account';
+import { productApi, ProductsListParams } from 'resources/product';
 
-import { Table } from 'components';
+import { ProductCard } from 'components';
 
-import { User } from 'types';
+import { CloseIcon } from 'public/images';
+
+import { Product } from 'types';
 
 import Filters from './components/Filters';
-import { COLUMNS, DEFAULT_PAGE, DEFAULT_PARAMS, EXTERNAL_SORT_FIELDS, PER_PAGE } from './constants';
+import PriceFilter from './components/PriceFilter';
+import { DEFAULT_PARAMS } from './constants';
+
+import classes from './index.module.css';
 
 const Home: NextPage = () => {
-  const [params, setParams] = useSetState<UsersListParams>(DEFAULT_PARAMS);
+  const [params, setParams] = useSetState<ProductsListParams>(DEFAULT_PARAMS);
+  const { data: products } = productApi.useList(params);
+  const { data: account } = accountApi.useGet();
+  const [activePage, setPage] = useState(1);
+  const [startPrice, setStartPrice] = useInputState<string | number>('');
+  const [endPrice, setEndPrice] = useInputState<string | number>('');
 
-  const { data: users, isLoading: isUserLostLoading } = userApi.useList(params);
+  const handleResetFilter = useCallback(() => {
+    setStartPrice('');
+    setEndPrice('');
+    setParams((prevParams) => ({
+      ...prevParams,
+      filter: undefined,
+    }));
+  }, [setParams]);
 
-  const onSortingChange = (sort: Record<string, SortDirection>) => {
-    setParams((prev) => {
-      const combinedSort = { ...pick(prev.sort, EXTERNAL_SORT_FIELDS), ...sort };
+  const handleFilterPriceChange = useCallback(
+    (value: string | number, type: 'start' | 'end') => {
+      if (type === 'start') {
+        setStartPrice(typeof value === 'string' ? 0 : value);
+      } else {
+        setEndPrice(value);
+      }
 
-      return { sort: combinedSort };
-    });
-  };
-
-  const onRowClick = (user: User) => {
-    showNotification({
-      title: 'Success',
-      message: `You clicked on the row for the user with the email address ${user.email}.`,
-      color: 'green',
-    });
-  };
+      if (startPrice === 0 && endPrice === 0) {
+        setParams((prevParams) => ({
+          ...prevParams,
+          filter: undefined,
+        }));
+      } else {
+        setParams({
+          filter: {
+            price: {
+              startPrice: type === 'start' ? value : startPrice,
+              endPrice: type === 'end' ? value : endPrice,
+            },
+          },
+        });
+      }
+    },
+    [setParams, startPrice, endPrice],
+  );
 
   return (
     <>
       <Head>
-        <title>Users</title>
+        <title>Marketplace</title>
       </Head>
 
-      <Stack gap="lg">
-        <Title order={2}>Users</Title>
-
-        <Filters setParams={setParams} />
-
-        <Table<User>
-          data={users?.results}
-          totalCount={users?.count}
-          pageCount={users?.pagesCount}
-          page={DEFAULT_PAGE}
-          perPage={PER_PAGE}
-          columns={COLUMNS}
-          isLoading={isUserLostLoading}
-          onPageChange={(page) => setParams({ page })}
-          onSortingChange={onSortingChange}
-          onRowClick={onRowClick}
+      <Group wrap="nowrap">
+        <PriceFilter
+          startPrice={startPrice}
+          endPrice={endPrice}
+          handlePriceChange={(value: string | number, type: 'start' | 'end') => handleFilterPriceChange(value, type)}
+          handleResetFilter={handleResetFilter}
         />
-      </Stack>
+
+        <Stack w="100%">
+          <Filters setParams={setParams} totalProducts={products?.count || 0} />
+
+          {startPrice && endPrice ? (
+            <Badge variant="white" className={classes.badge}>
+              <Group gap={4}>
+                ${startPrice}-${endPrice}
+                <CloseIcon onClick={handleResetFilter} />
+              </Group>
+            </Badge>
+          ) : null}
+
+          <Group align="center">
+            {account &&
+              products?.results.map((product: Product) => (
+                <ProductCard key={product._id} userId={account?._id} product={product} />
+              ))}
+          </Group>
+
+          {products?.pagesCount && products?.pagesCount > 1 && (
+            <Pagination
+              total={products?.pagesCount || 0}
+              value={activePage}
+              onChange={(v) => {
+                setParams({
+                  page: v,
+                });
+                setPage(v);
+              }}
+              mt="sm"
+              color="blue"
+            />
+          )}
+        </Stack>
+      </Group>
     </>
   );
 };

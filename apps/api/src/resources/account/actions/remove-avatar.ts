@@ -1,7 +1,5 @@
 import { userService } from 'resources/user';
 
-import { cloudStorageService } from 'services';
-
 import { AppKoaContext, AppRouter, Next } from 'types';
 
 async function validator(ctx: AppKoaContext, next: Next) {
@@ -15,12 +13,7 @@ async function validator(ctx: AppKoaContext, next: Next) {
 async function handler(ctx: AppKoaContext) {
   const { user } = ctx.state;
 
-  const fileKey = cloudStorageService.getFileKey(user.avatarUrl);
-
-  const [updatedUser] = await Promise.all([
-    userService.updateOne({ _id: user._id }, () => ({ avatarUrl: null })),
-    cloudStorageService.deleteObject(fileKey),
-  ]);
+  const [updatedUser] = await Promise.all([userService.updateOne({ _id: user._id }, () => ({ avatarUrl: null }))]);
 
   ctx.body = userService.getPublic(updatedUser);
 }
