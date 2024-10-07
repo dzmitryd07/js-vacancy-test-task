@@ -14,8 +14,8 @@ const schema = z.object({
   WS_URL: z.string(),
   WEB_URL: z.string(),
   MIXPANEL_API_KEY: z.string().optional(),
-  NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: z.string(),
-  STRIPE_SECRET_KEY: z.string(),
+  NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: z.string().optional(),
+  STRIPE_SECRET_KEY: z.string().optional(),
 });
 
 type Config = z.infer<typeof schema>;

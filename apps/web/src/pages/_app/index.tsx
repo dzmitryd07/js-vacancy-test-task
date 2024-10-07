@@ -31,7 +31,7 @@ const App: FC<AppProps> = ({ Component, pageProps }) => (
           <CartProvider
             mode="payment"
             cartMode="client-only"
-            stripe={config.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY}
+            stripe={config.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY || ''}
             successUrl={`${config.WEB_URL}/checkout/result`}
             cancelUrl={`${config.WEB_URL}/checkout/result`}
             currency="USD"

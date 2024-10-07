@@ -11,7 +11,7 @@ import { sessionApi } from 'resources/session';
 
 import config from 'config';
 
-const stripePromise = loadStripe(config.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY);
+const stripePromise = loadStripe(config.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY || '');
 
 const CheckoutPage: NextPage = () => {
   const { cartDetails } = useShoppingCart();
