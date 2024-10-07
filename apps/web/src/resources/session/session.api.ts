@@ -3,7 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import config from 'config';
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const stripe = require('stripe')(config.NEXT_STRIPE_SECRET_KEY);
+const stripe = require('stripe')(config.STRIPE_SECRET_KEY);
 
 type CartSessionItem = {
   price_data: {

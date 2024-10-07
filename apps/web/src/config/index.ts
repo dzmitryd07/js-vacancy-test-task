@@ -15,7 +15,7 @@ const schema = z.object({
   WEB_URL: z.string(),
   MIXPANEL_API_KEY: z.string().optional(),
   NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: z.string(),
-  NEXT_STRIPE_SECRET_KEY: z.string(),
+  STRIPE_SECRET_KEY: z.string(),
 });
 
 type Config = z.infer<typeof schema>;
@@ -31,7 +31,7 @@ const processEnv = {
   WEB_URL: process.env.NEXT_PUBLIC_WEB_URL,
   MIXPANEL_API_KEY: process.env.NEXT_PUBLIC_MIXPANEL_API_KEY,
   NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY,
-  NEXT_STRIPE_SECRET_KEY: process.env.NEXT_STRIPE_SECRET_KEY,
+  STRIPE_SECRET_KEY: process.env.STRIPE_SECRET_KEY,
 } as Record<keyof Config, string | undefined>;
 
 const config = validateConfig<Config>(schema, processEnv);
