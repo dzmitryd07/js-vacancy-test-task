@@ -153,7 +153,7 @@ importers:
     devDependencies:
       "@shelf/jest-mongodb":
         specifier: 4.2.0
-        version: 4.2.0(@aws-sdk/credential-providers@3.272.0)(jest-environment-node@29.7.0)(mongodb@6.1.0(@aws-sdk/credential-providers@3.272.0)(gcp-metadata@5.2.0)(socks@2.7.1))
+        version: 4.2.0(@aws-sdk/credential-providers@3.272.0)(jest-environment-node@29.7.0)(mongodb@5.9.2(@aws-sdk/credential-providers@3.272.0)(gcp-metadata@5.2.0)(socks@2.7.1))
       "@types/bcryptjs":
         specifier: 2.4.2
         version: 2.4.2
@@ -13149,7 +13149,7 @@ packages:
       snappy:
         optional: true
 
-  mongodb@6.1.0:
+  mongodb@5.9.2:
     resolution:
       {
         integrity: sha512-AvzNY0zMkpothZ5mJAaIo2bGDjlJQqqAbn9fvtVgwIIUPEfdrqGxqNjjbuKyrgQxg2EvCmfWdjq+4uj96c0YPw==,
@@ -21954,7 +21954,7 @@ snapshots:
       domhandler: 5.0.3
       selderee: 0.11.0
 
-  "@shelf/jest-mongodb@4.2.0(@aws-sdk/credential-providers@3.272.0)(jest-environment-node@29.7.0)(mongodb@6.1.0(@aws-sdk/credential-providers@3.272.0)(gcp-metadata@5.2.0)(socks@2.7.1))":
+  "@shelf/jest-mongodb@4.2.0(@aws-sdk/credential-providers@3.272.0)(jest-environment-node@29.7.0)(mongodb@5.9.2(@aws-sdk/credential-providers@3.272.0)(gcp-metadata@5.2.0)(socks@2.7.1))":
     dependencies:
       debug: 4.3.4
       jest-environment-node: 29.7.0
@@ -27421,7 +27421,7 @@ snapshots:
       "@aws-sdk/credential-providers": 3.272.0
       "@mongodb-js/saslprep": 1.1.5
 
-  mongodb@6.1.0(@aws-sdk/credential-providers@3.272.0)(gcp-metadata@5.2.0)(socks@2.7.1):
+  mongodb@5.9.2(@aws-sdk/credential-providers@3.272.0)(gcp-metadata@5.2.0)(socks@2.7.1):
     dependencies:
       "@mongodb-js/saslprep": 1.1.5
       bson: 6.5.0
