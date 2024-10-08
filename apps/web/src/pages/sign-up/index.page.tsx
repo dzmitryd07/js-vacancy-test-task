@@ -107,7 +107,7 @@ const SignUp: NextPage = () => {
 
           {signupToken && (
             <Stack gap={0}>
-              <Text>You look like a cool developer.</Text>
+              {/* <Text>You look like a cool developer.</Text> */}
               <Anchor size="sm" href={`${config.API_URL}/account/verify-email?token=${signupToken}`} target="_blank">
                 Verify email
               </Anchor>

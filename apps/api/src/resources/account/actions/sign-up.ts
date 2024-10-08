@@ -35,10 +35,9 @@ async function handler(ctx: AppKoaContext<SignUpParams>) {
 
   await emailService.sendTemplate<Template.VERIFY_EMAIL>({
     to: user.email,
-    subject: 'Please Confirm Your Email Address for Ship',
+    subject: 'Please Confirm Your Email Address for Shopy',
     template: Template.VERIFY_EMAIL,
     params: {
-      firstName: user.email,
       href: `${config.API_URL}/account/verify-email?token=${signupToken}`,
     },
   });

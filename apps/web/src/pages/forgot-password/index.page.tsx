@@ -82,7 +82,7 @@ const ForgotPassword: NextPage = () => {
               error={errors.email?.message}
             />
 
-            <Button type="submit" loading={isForgotPasswordPending}>
+            <Button color="#2B77EB" radius="md" type="submit" loading={isForgotPasswordPending}>
               Send reset link
             </Button>
           </Stack>
@@ -90,7 +90,7 @@ const ForgotPassword: NextPage = () => {
 
         <Group justify="center">
           Have an account?
-          <Anchor component={Link} href={RoutePath.SignIn}>
+          <Anchor component={Link} href={RoutePath.SignIn} c="#2B77EB">
             Sign in
           </Anchor>
         </Group>
