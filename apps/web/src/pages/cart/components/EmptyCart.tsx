@@ -1,8 +1,6 @@
 import React, { FC } from 'react';
 import { useRouter } from 'next/router';
-import { Button, Center, Group, Stack, Text, Title } from '@mantine/core';
-
-import { EmptyCartImage } from 'public/images';
+import { Button, Center, Group, Image, Stack, Text, Title } from '@mantine/core';
 
 import { RoutePath } from 'routes';
 
@@ -10,11 +8,11 @@ const EmptyCart: FC = () => {
   const router = useRouter();
 
   return (
-    <Center h="40vh">
+    <Center h="40vh" w="100vw">
       <Group h="auto" w="480px">
         <Stack justify="center" m="auto" align="center" gap={0}>
           <Group mb={32}>
-            <EmptyCartImage />
+            <Image src="/images/empty-cart.png" />
           </Group>
 
           <Title order={2} mb={16}>

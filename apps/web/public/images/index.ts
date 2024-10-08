@@ -1,6 +1,5 @@
 export { default as CartIcon } from './cart-icon.svg';
 export { default as CloseIcon } from './close-icon.svg';
-export { default as EmptyCartImage } from './empty-cart.svg';
 export { default as LogoImage } from './logo.svg';
 export { default as PaymentFailedIcon } from './payment-failed.svg';
 export { default as PaymentSuccessIcon } from './payment-success.svg';
