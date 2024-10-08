@@ -12,7 +12,7 @@ export const SignUpWelcome: FC<SignUpWelcomeProps> = ({ href = 'https://ship.par
   <Layout previewText="Welcome on board the Ship!">
     <Text>Dear user,</Text>
 
-    <Text>We are excited to have you join our growing Ship community.</Text>
+    <Text>We are excited to have you join our growing Shopy community.</Text>
 
     <Text>
       Your account has been successfully verified, and you are now a part of a vibrant network of people who share your

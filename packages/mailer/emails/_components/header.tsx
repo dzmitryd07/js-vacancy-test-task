@@ -1,13 +1,14 @@
 import React from 'react';
 import { Column, Img, Row, Section } from '@react-email/components';
 
-const logoURL = 'https://ship-demo.fra1.cdn.digitaloceanspaces.com/assets/logo.png';
+const logoURL =
+  'https://firebasestorage.googleapis.com/v0/b/test-vacancy-task.appspot.com/o/photos%2F6704f242bf6baf084f590463-1728377608598-shopy.png?alt=media&token=81a0c8bc-316e-4304-bdbd-eb5a3b3ecd75';
 
 const Header = () => (
   <>
     <Row className="p-6">
       <Column align="center">
-        <Img src={logoURL} width="88" height="44" alt="Ship" />
+        <Img src={logoURL} alt="Ship" />
       </Column>
     </Row>
 
