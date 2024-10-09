@@ -35,30 +35,29 @@ export const useCreateSession = (data: { lineItems: CartSessionItem[]; customer:
   return res.data;
 };
 
+export const useListCheckoutSessions = <T>(data: T) => {
+  const res = useQuery({
+    queryKey: ['fetchListCheckoutSessions'],
+    queryFn: async () => {
+      const { data: sessions } = await stripe.checkout.sessions.list({ ...data, status: 'complete' });
+      const sessionIds = sessions.map((session: { id: string }) => session.id);
+
+      const promises = sessionIds.map((sessionId: string) => stripe.checkout.sessions.listLineItems(sessionId));
+      const lineItems = await Promise.all(promises);
+      const result = lineItems.map((item) => item.data[0]);
+      return result;
+    },
+  });
+
+  return res.data;
+};
+
 export const useGetSession = <T>(data: T) => {
   const result = useQuery({
     queryKey: ['fetchClientSession'],
     queryFn: async () => {
       const session = await stripe.checkout.sessions.retrieve(data);
-      if (session.status === 'open') {
-        // console.log(session.status);
-      } else if (session.status === 'complete') {
-        // console.log(session.status);
-      }
-
       return session;
-    },
-  });
-
-  return result.data;
-};
-
-export const useListPayments = () => {
-  const result = useQuery({
-    queryKey: ['fetchClientPayments'],
-    queryFn: async () => {
-      const paymentIntents = await stripe.paymentIntents.list();
-      return paymentIntents;
     },
   });
 
